@@ -4,7 +4,7 @@ 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
 Herrike
 
 
-git remote set-url origin https://Herrike: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@github.com/Herrike/repository.git
+git remote set-url origin https://Herrike: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@github.com/Herrike/rebel-wars.git
 
 
 Planets: They would like to get an overview of all the planets, their climate distribution and the terrain.
