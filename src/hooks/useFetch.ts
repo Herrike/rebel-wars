@@ -1,6 +1,6 @@
 import { useEffect, useReducer, useRef } from 'react'
 
-interface State<T> {
+export interface State<T> {
   data?: T
   error?: Error
 }
@@ -30,9 +30,9 @@ function useFetch<T = unknown>(url?: string, options?: RequestInit): State<T> {
       case 'loading':
         return { ...initialState }
       case 'fetched':
-        return { ...initialState, data: action.payload }
+        return { ...initialState, data: action.payload}
       case 'error':
-        return { ...initialState, error: action.payload }
+        return { ...initialState, error: action.payload}
       default:
         return state
     }

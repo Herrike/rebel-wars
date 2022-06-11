@@ -1,0 +1,1 @@
+export const arrayFromNumber = (size: number): unknown[] => Array.from(new Array(size))
