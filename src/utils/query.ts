@@ -1,38 +1,31 @@
-import { LangType, SectionType } from "../contexts/sectionContext.types";
+import { SectionType } from "../contexts/sectionContext.types";
 
 export const wookieeLang = 'wookiee'
 
-export type QueryParam = {[key: string]: string}
+export type QueryParams = {[key: string]: string}
 
-export const getParamValue = (url: string, key: string): string => {
-    const searchParams = new URLSearchParams(url);
-    return searchParams.get(key) || ''
+export const getParams = (str: string): QueryParams => {
+    return str.split(/[?&]/).slice(1).map(function(paramPair) {
+        return paramPair.split(/=(.+)?/).slice(0, 2);
+    }).reduce(function (obj, pairArray) {            
+        obj[pairArray[0]] = pairArray[1];
+        return obj;
+    }, {} as QueryParams);
 }
 
-export const setParamValue = (url: string, key: string, value: string): {[key: string]: string} => {
-    const searchParams = new URLSearchParams(url);
-    searchParams.set(key, value)
-    return searchParams as unknown as {[key: string]: string}
-}
-
-export const paramsToString = (params: QueryParam[] = [], activeLang?: LangType): string => {
+export const paramsToString = (params: QueryParams): string => {
     const queryPrefix = '/?'
     const paramPrefix = '&'
-    let queryParams = ''
-        queryParams = params.length > 0 ? params?.reduce((acc: string, curr: QueryParam)=> {
-            const parmStr = Object.keys(curr).map(key => `${key}=${curr[key]}`).join("&");
+        let queryParams = ''
+        const paramKeys = Object.keys(params)
+        return  paramKeys.length > 0 ? paramKeys.reduce((acc: string, curr)=> {
+            const parmStr = (`${curr}=${params[curr]}`)
             return `${acc}${acc === queryPrefix ? parmStr : paramPrefix + parmStr}`
         }, queryPrefix) : queryParams
-
-    if(activeLang && activeLang === wookieeLang){
-        const wookieParam = `format=${wookieeLang}`
-        queryParams = `${queryParams}${queryParams === queryPrefix ? wookieParam : paramPrefix + wookieParam}`
-    }
-    return queryParams
 }
 
-export const prepareQuery = (activeSection: SectionType, activeLang: LangType, params?: QueryParam[]): string => {
-    const queryParams = paramsToString(params, activeLang)
+export const prepareQuery = (activeSection: SectionType, params: QueryParams): string => {
+    const queryParams = paramsToString(params)
 
     return `api/${activeSection}${queryParams}`
 }
