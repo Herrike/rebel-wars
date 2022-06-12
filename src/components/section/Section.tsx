@@ -4,8 +4,6 @@ import { SectionProps } from './Section.types'
 
 const Pagination = React.lazy(() => import('../').then(module => ({ default: module.Pagination })));
 
-
-
 const Section:FC<SectionProps> = ({content}) => {
   const { activeSection, contentSection } = useContext(SectionContext)
   return (

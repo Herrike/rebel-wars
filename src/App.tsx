@@ -1,7 +1,7 @@
 import React, { Suspense, useEffect, useState } from 'react';
 import './App.css';
 import { SectionContext } from './contexts/sectionContext';
-import { SectionType } from './contexts/sectionContext.types';
+import { LangType, SectionType } from './contexts/sectionContext.types';
 import useFetch from './hooks/useFetch';
 import { isGenericResponseData } from './utils/typeguards';
 import { GenericResponseData } from './utils/typeguards.types';
@@ -16,8 +16,8 @@ const Section = React.lazy(() => import('./components').then(module => ({ defaul
 const App = () => {
   const [activeSection, setActiveSection] = useState<SectionType>('planets')
   const [querySection, setQuerySection] = useState('api/planets')
-  
   const [contentSection, setContentSection] = useState<GenericResponseData|null>(null)
+  const [activeLang, setActiveLang] = useState<LangType>('')
   const [apiError, setApiError] = useState<Error | undefined>()
 
   const {data, error} = useFetch(querySection)
@@ -33,7 +33,9 @@ const App = () => {
     
   return (
     <div className="App">
-      <SectionContext.Provider value={{activeSection, querySection, contentSection, setActiveSection,setQuerySection,setContentSection}}>
+      <SectionContext.Provider value={{
+        activeSection, querySection, contentSection, activeLang, 
+        setActiveSection,setQuerySection,setContentSection, setActiveLang}}>
         <Navigation />
         <Suspense fallback={<Loading />}>
           {apiError || contentSection === null
