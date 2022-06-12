@@ -1,10 +1,9 @@
 import React, { FC, useContext } from 'react'
 import { SectionContext } from '../../contexts/sectionContext'
-import { SectionProps } from './Section.types'
 
 const Pagination = React.lazy(() => import('../').then(module => ({ default: module.Pagination })));
 
-const Section:FC<SectionProps> = ({content}) => {
+const Section:FC = () => {
   const { activeSection, contentSection } = useContext(SectionContext)
   return (
     <>

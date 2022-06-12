@@ -1,7 +1,7 @@
 import {  LangType, SectionType } from "../contexts/sectionContext.types"
 import { GenericResponseData } from "./typeguards.types"
 
-export const isGenericObject = (item: unknown, withCollection?: boolean): item is Record<string, unknown> => {
+export const isGenericObject = (item: unknown): item is Record<string, unknown> => {
     return item instanceof Object}
 
 export const isGenericCollection = (collection: unknown): collection is unknown[] => {

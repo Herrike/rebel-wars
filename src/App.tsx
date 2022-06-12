@@ -40,7 +40,7 @@ const App = () => {
         <Suspense fallback={<Loading />}>
           {apiError || contentSection === null
           ? (<ApiError error={apiError} />) 
-          : (<Section content={contentSection} />)
+          : (<Section />)
           } 
         </Suspense>
       </SectionContext.Provider>
