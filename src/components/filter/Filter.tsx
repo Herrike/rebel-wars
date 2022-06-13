@@ -1,29 +1,14 @@
-import React, { FC, MouseEvent, useContext } from 'react'
+import React, { FC, useContext } from 'react'
 import { SectionContext } from '../../contexts/sectionContext';
-import { getParams, prepareQuery, QueryParams } from '../../utils/query';
 
-const PlanetsFilter: FC = () => {
-    const { activeSection, querySection, setQuerySection } = useContext(SectionContext)
-    const filterPlanetsHandler = (event:MouseEvent<HTMLButtonElement>): void => {
-        let params: QueryParams = getParams(querySection)
-        // ask if filtering is per page results or from api request
-        const query = prepareQuery(activeSection, params)
-        setQuerySection(query)
-    }
-    return (
-        <ul>
-            <li>
-                <button onClick={filterPlanetsHandler}>Admiral's strategy</button>
-            </li>
-        </ul>
-    )
-}
+const PlanetsFilter = React.lazy(() => import('../').then(module => ({ default: module.PlanetsFilter })));
+const SpeciesFilter = React.lazy(() => import('../').then(module => ({ default: module.SpeciesFilter })));
 
 const components = {
     planets: PlanetsFilter,
-    vehicles: () => <div>filter for vehicles</div>,
-    species: () => <div>filter for species</div>,
-    starships: () => <div>filter for starships</div>,
+    species: SpeciesFilter,
+    vehicles: () => <></>,
+    starships: () => <></>,
 };
 
 const Filter:FC = () => {

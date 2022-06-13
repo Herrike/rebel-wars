@@ -5,9 +5,9 @@ export const wookieeLang = 'wookiee'
 export type QueryParams = {[key: string]: string}
 
 export const getParams = (str: string): QueryParams => {
-    return str.split(/[?&]/).slice(1).map(function(paramPair) {
+    return str.split(/[?&]/).slice(1).map((paramPair) => {
         return paramPair.split(/=(.+)?/).slice(0, 2);
-    }).reduce(function (obj, pairArray) {            
+    }).reduce((obj, pairArray) => {            
         obj[pairArray[0]] = pairArray[1];
         return obj;
     }, {} as QueryParams);
@@ -28,4 +28,26 @@ export const prepareQuery = (activeSection: SectionType, params: QueryParams): s
     const queryParams = paramsToString(params)
 
     return `api/${activeSection}${queryParams}`
+}
+
+export const getGravity = (str: string): number | string => {
+    
+    if(str.includes('standard') && !str.includes(',')){
+        return parseFloat(str.split(' ')[0])
+    }
+    else if(str.includes('surface') && str.includes(',')){
+        // multiple gravity params
+        const gravities = str.split(',')
+        const gravityIndex = gravities.findIndex(gravity => gravity.includes('surface'))
+
+        return parseFloat(gravities[gravityIndex].split(' ')[0])
+    }
+    else if(str === 'N/A' || str === 'unkwnown'){
+        return str
+    }
+    else return str
+}
+
+export const isNumberInRange = (value: number, min = 0, max = 1): boolean => {
+    return value >= min && value <= max
 }

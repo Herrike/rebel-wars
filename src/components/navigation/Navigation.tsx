@@ -4,7 +4,7 @@ import { getParams, prepareQuery } from '../../utils/query'
 import { isValidSection } from '../../utils/typeguards'
 
 const SwitchLang = React.lazy(() => import('../').then(module => ({ default: module.SwitchLang })));
-//const Filter = React.lazy(() => import('../').then(module => ({ default: module.Filter })));
+const Filter = React.lazy(() => import('../').then(module => ({ default: module.Filter })));
 
 const Navigation:FC = () => {
   const { activeSection, querySection, setActiveSection, setQuerySection } = useContext(SectionContext)
@@ -29,7 +29,7 @@ const Navigation:FC = () => {
             <li><a href="#starships" data-testid={'anchor-starships'} data-section={'starships'} onClick={changeSectionHandler}>Starships</a></li>
             <li>Language <SwitchLang /></li>
         </ul>
-        {/* <Filter /> */}
+        <Filter />
     </nav>
   )
 }
