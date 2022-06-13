@@ -11,6 +11,7 @@ const Navigation = React.lazy(() => import('./components').then(module => ({ def
 const Loading = React.lazy(() => import('./components').then(module => ({ default: module.Loading })));
 const ApiError = React.lazy(() => import('./components').then(module => ({ default: module.ApiError })));
 const Section = React.lazy(() => import('./components').then(module => ({ default: module.Section })));
+const Space = React.lazy(() => import('./components').then(module => ({ default: module.Space })));
 
 
 const App = () => {
@@ -37,6 +38,7 @@ const App = () => {
         activeSection, querySection, contentSection, activeLang, 
         setActiveSection,setQuerySection,setContentSection, setActiveLang}}>
         <Navigation />
+        <Space />
         <Suspense fallback={<Loading />}>
           {apiError || contentSection === null
           ? (<ApiError error={apiError} />) 

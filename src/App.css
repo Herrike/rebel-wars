@@ -1,12 +1,16 @@
+@import url(./css/space.css);
 
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
 body {
+  height: 100vh;
+  overflow-x: hidden;
   position: relative;
-  background-color: black;
+  background:black url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/stars-back.png) ;
 }
 
 .App {
@@ -20,7 +24,12 @@ body {
   text-decoration: none;
 }
 
-.App nav {
+
+.App header {
+  padding: 50px 0;
+}
+
+.App .main-nav {
   background-color: black;
   padding: 20px 10px;
   position: fixed;
@@ -29,14 +38,68 @@ body {
   z-index: 10;
 }
 
-.App header {
-  padding: 0 0 50px;
+.App .main-nav a {
+  font-weight: 700;
+}
+
+.App nav .lang {
+  padding: 10px 15px;
+  display: flex;
+  text-transform: capitalize;
+  font-size: .9rem;
+}
+.App nav select {
+  border: 1px solid white;
+  background-color: transparent;
+  border: 0;
+  margin-left: 15px;
 }
 
 .App nav ul {
   display: flex;
   justify-content: space-around;
+  align-items: center;
   list-style: none;
+}
+
+.App nav ul:first-of-type {
+  border-bottom: 1px solid white;
+  padding: 0 0 10px;
+}
+
+.App nav .filter {
+  display: flex;
+  justify-content: end;
+  padding: 10px 15px;
+}
+
+.App nav .filter button {
+  border: 1px solid white;
+  background-color: black;
+  color: white;
+  padding: 5px 10px;
+  margin-left: 10px;
+}
+
+.App nav .filter button {
+  cursor: pointer;
+}
+
+.App nav .filter button:before {
+  display: inline-block;
+  content: '';
+  width: 8px;
+  height: 7px;
+  border: 1px solid white;
+  margin-right: 5px;
+}
+
+.App nav .filter button[data-clicked="true"]:before {
+  background-color: white;
+}
+
+.App nav li {
+  text-transform: uppercase;
 }
 
 .App .grid {

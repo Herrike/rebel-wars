@@ -63,6 +63,5 @@ export const filterContentByStrategy = (results: unknown[], activeSection: Extra
             return classification.preferred.includes(result.classification) && !classification.discarded.includes(result.classification) && designation.preferred.includes(result.designation) && !skin_colors.preferred.includes(result.skin_colors);
         })
     }
-
-    return results
+    return []
 }

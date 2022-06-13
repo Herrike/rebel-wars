@@ -25,7 +25,7 @@ const SwitchLang:FC = () => {
     return (
         <form action="#">
             <select name="lang" id="switch-lang" value={activeLang} disabled onChange={changeLangHandler} title='wookiee language support coming soon'>
-                <option value="">default</option>
+                <option value="">English</option>
                 <option value={wookieeLang}>{wookieeLang}</option>
             </select>
         </form>

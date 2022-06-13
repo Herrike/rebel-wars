@@ -23,10 +23,10 @@ const Navigation:FC = () => {
   }
 
   return (
-    <nav>
+    <nav className='main-nav'>
         <ul>
-            {sections.map(section => (<li><a href={`#${section}`} data-testid={`anchor-${section}`}  data-section={section} onClick={changeSectionHandler}>{section}</a></li>))}
-            <li>Language <SwitchLang /></li>
+            {sections.map(section => (<li key={section}><a href={`#${section}`} data-testid={`anchor-${section}`}  data-section={section} onClick={changeSectionHandler}>{section}</a></li>))}
+            <li className='lang'>Language <SwitchLang /></li>
         </ul>
         <Filter />
     </nav>
