@@ -40,12 +40,15 @@ body {
 }
 
 .App .grid {
-  justify-content: stretch;  
   display: grid;
-  grid-template-columns: 250px 250px 250px 250px 250px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 250px 250px; 
   column-gap: 50px;
   row-gap: 50px;
+}
+
+.App .grid article {
+  justify-self: center;
 }
 
 .App .grid ul {
@@ -65,6 +68,14 @@ body {
   list-style: none;
   justify-content: space-evenly;
 }
+
+.App .pagination button {
+  padding: 10px;
+  background: black;
+  color: white;
+  border: 1px solid white;
+}
+
 
 .App .pagination button:hover {
   cursor: pointer

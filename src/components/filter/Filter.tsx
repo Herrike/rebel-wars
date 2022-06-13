@@ -6,8 +6,7 @@ const PlanetsFilter: FC = () => {
     const { activeSection, querySection, setQuerySection } = useContext(SectionContext)
     const filterPlanetsHandler = (event:MouseEvent<HTMLButtonElement>): void => {
         let params: QueryParams = getParams(querySection)
-        params.climate = `temperate`
-        params.climate = `tropical`
+        // ask if filtering is per page results or from api request
         const query = prepareQuery(activeSection, params)
         setQuerySection(query)
     }
