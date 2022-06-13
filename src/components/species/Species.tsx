@@ -15,15 +15,14 @@ const Species: FC = () => {
     }, [contentSection, species])
     
     return  (
-    <section>
-        {species?.map(({name, classification, designation, homeworld, language}) => {
+    <section className='grid'>
+        {species?.map(({name, classification, designation, language}) => {
             const key = name.toLowerCase()
             return(<article key={key}>
                 <h3>{name}</h3>
                     <ul>
                         <li>classification: {classification}</li>
                         <li>designation: {designation}</li>
-                        <li>homeworld: {homeworld}</li>
                         <li>language: {language}</li>
                     </ul>
             </article>)

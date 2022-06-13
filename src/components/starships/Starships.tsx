@@ -15,7 +15,7 @@ const Starships: FC = () => {
     }, [contentSection, starships])
     
     return  (
-    <section>
+    <section className='grid'>
         {starships?.map(({  
             cargo_capacity,
             cost_in_credits,
@@ -25,7 +25,6 @@ const Starships: FC = () => {
             max_atmosphering_speed,
             model,
             name,
-            passengers,
             starship_class
         }) => {
             const key = name.toLowerCase()
@@ -40,7 +39,6 @@ const Starships: FC = () => {
                     <li>max atmosphering speed: {max_atmosphering_speed}</li>
                     <li>cost in credits: {cost_in_credits}</li>
                     <li>cargo capacity: {cargo_capacity}</li>
-                    <li>passengers: {passengers}</li>
                     </ul>
             </article>)
         })}

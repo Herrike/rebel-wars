@@ -15,7 +15,7 @@ const Planets: FC = () => {
     }, [contentSection, planets])
     
     return  (
-    <section>
+    <section className='grid'>
         {planets?.map(({name, diameter, gravity, population, surface_water, terrain,orbital_period}) => {
             const key = name.toLowerCase()
             return(<article key={key}>

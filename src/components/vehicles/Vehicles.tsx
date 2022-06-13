@@ -15,7 +15,7 @@ const Vehicles: FC = () => {
     }, [contentSection, vehicles])
     
     return  (
-    <section>
+    <section className='grid'>
         {vehicles?.map(({name, vehicle_class, model, max_atmosphering_speed, manufacturer, length,cost_in_credits, cargo_capacity,passengers}) => {
             const key = name.toLowerCase()
             return(<article key={key}>

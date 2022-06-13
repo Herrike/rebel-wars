@@ -19,7 +19,10 @@ const Section:FC = () => {
 
   const Content = components[`${activeSection}`];
   return (<>
-    I selected collection: {activeSection}. and I will show max 10 results
+    <header>
+      <h2>Collection: {activeSection}</h2>
+      <p>[max 10 results]</p>
+    </header>
     <Content />
     {contentSection && contentSection?.count > 10 && <Pagination />}
     </>

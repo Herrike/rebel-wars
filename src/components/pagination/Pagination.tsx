@@ -18,11 +18,14 @@ const Pagination:FC = () => {
         if(Number.isInteger(selectedPage) && selectedPage > 1 && selectedPage !== querySectionPage){
             params.page = `${selectedPage}`
         }
+        else if(Number.isInteger(selectedPage) && selectedPage === 1 && selectedPage !== querySectionPage){
+            delete params.page
+        }
         const query = prepareQuery(activeSection, params)
         setQuerySection(query)
   }
   return (
-     <ul>
+     <ul className='pagination'>
         {arrayFromNumber(pages).map((_, i)=> {
         const pageKey = i+1
         const pageName = `page-${pageKey}`
