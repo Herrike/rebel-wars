@@ -6,16 +6,18 @@ import { isValidSection } from '../../utils/typeguards'
 const SwitchLang = React.lazy(() => import('../').then(module => ({ default: module.SwitchLang })));
 const Filter = React.lazy(() => import('../').then(module => ({ default: module.Filter })));
 
+const sections = ['planets', 'vehicles', 'species', 'starships']
+
 const Navigation:FC = () => {
   const { activeSection, querySection, setActiveSection, setQuerySection } = useContext(SectionContext)
   
   const changeSectionHandler = (event:MouseEvent<HTMLAnchorElement>): void => {
-    const section = event.currentTarget.dataset.section
+    const changedSection = event.currentTarget.dataset.section
 
-    if(isValidSection(section) && section !== activeSection){
-      setActiveSection(section)
+    if(isValidSection(changedSection) && changedSection !== activeSection){
+      setActiveSection(changedSection)
       const params = getParams(querySection)
-      const query = prepareQuery(section, params)
+      const query = prepareQuery(changedSection, params)
       setQuerySection(query)
     }
   }
@@ -23,10 +25,7 @@ const Navigation:FC = () => {
   return (
     <nav>
         <ul>
-            <li><a href="#planets" data-testid={'anchor-planets'} data-section={'planets'} onClick={changeSectionHandler}>Planets</a></li>
-            <li><a href="#species" data-testid={'anchor-species'} data-section={'species'} onClick={changeSectionHandler}>Species</a></li>
-            <li><a href="#vehicles" data-testid={'anchor-vehicles'} data-section={'vehicles'} onClick={changeSectionHandler}>Vehicles</a></li>
-            <li><a href="#starships" data-testid={'anchor-starships'} data-section={'starships'} onClick={changeSectionHandler}>Starships</a></li>
+            {sections.map(section => (<li><a href={`#${section}`} data-testid={`anchor-${section}`}  data-section={section} onClick={changeSectionHandler}>{section}</a></li>))}
             <li>Language <SwitchLang /></li>
         </ul>
         <Filter />

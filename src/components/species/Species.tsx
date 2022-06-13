@@ -3,8 +3,6 @@ import { SectionContext } from '../../contexts/sectionContext'
 import { isGenericResponseData, isSpeciesCollection } from '../../utils/typeguards'
 import { Specie } from './Species.types'
 
-
-
 const Species: FC = () => {
     const [species, setSpecies] = useState<Specie[]|null>(null)
     const { contentSection } = useContext(SectionContext)

@@ -53,5 +53,5 @@ export const isRange = (item: unknown): item is Range => {
     return isGenericObject(item) && 'min' in item && 'max' in item
 }
 
-export const isStrategyType = (section: SectionType): section is Extract<'planets'|'species',SectionType> =>  section !== 'starships' && section !== 'vehicles'
+export const isFilterType = (section: SectionType): section is Extract<'planets'|'species',SectionType> =>  section !== 'starships' && section !== 'vehicles'
 
