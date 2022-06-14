@@ -10,11 +10,6 @@ const Filter:FC = () => {
     const [clicked, setClicked] = useState(false)
     const query = prepareQuery(activeSection, {})
 
-    useEffect(()=> {
-        
-        return () => setClicked(false)
-    },[clicked])
-
     const filterPlanetsHandler = (event:MouseEvent<HTMLButtonElement>): void => {
         const filter = event.currentTarget.getAttribute('data-filter') || 'all'
         if(isGenericResponseData(contentSection) && (isPlanetsCollection(contentSection.results) || isSpeciesCollection(contentSection.results))){
@@ -27,11 +22,13 @@ const Filter:FC = () => {
                 if(clicked === false) {
                     response.results = filterContentByStrategy(contentSection.results, activeSection)
                     setContentSection(response)
+                    setClicked(true)
                 }
                 else{
                     setQuerySection(query)
+                    setClicked(false)
                 }
-                setClicked(!clicked)
+                
             }
         }
     }

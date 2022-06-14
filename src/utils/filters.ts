@@ -1,6 +1,6 @@
 import { SectionType } from "../contexts/sectionContext.types";
 import { getGravity, isNumberInRange } from "./query";
-import { Strategies } from "./strategies.types";
+import { Strategies } from "./filters.types";
 import { isPlanetsCollection, isSpeciesCollection } from "./typeguards";
 
 const sectionCommissioner = {

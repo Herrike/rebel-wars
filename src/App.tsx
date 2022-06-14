@@ -33,7 +33,7 @@ const App = () => {
     }, [data, error])
     
   return (
-    <div className="App">
+    <div className="App" data-testid="app">
       <SectionContext.Provider value={{
         activeSection, querySection, contentSection, activeLang, 
         setActiveSection,setQuerySection,setContentSection, setActiveLang}}>

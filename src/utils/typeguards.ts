@@ -4,7 +4,7 @@ import { Starship } from "../components/starships/Starships.types"
 import { Vehicle } from "../components/vehicles/Vehicles.types"
 import { LangType, SectionType } from "../contexts/sectionContext.types"
 import { objectHasAllRequiredKeys } from "./object"
-import { Interest } from "./strategies.types"
+import { Interest } from "./filters.types"
 import { GenericResponseData } from "./typeguards.types"
 
 export const isGenericObject = (item: unknown): item is Record<string, unknown> => {

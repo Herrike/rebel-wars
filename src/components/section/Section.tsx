@@ -18,14 +18,14 @@ const Section:FC = () => {
   const { activeSection, contentSection } = useContext(SectionContext)
 
   const Content = components[`${activeSection}`];
-  return (<>
+  return (<div data-testid='section'>
     <header>
       <h2>Collection: {activeSection}</h2>
       <p>[max 10 results]</p>
     </header>
     <Content />
     {contentSection && contentSection?.count > 10 && <Pagination />}
-    </>
+    </div>
   )
 }
 
