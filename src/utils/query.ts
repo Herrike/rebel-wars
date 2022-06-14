@@ -16,7 +16,7 @@ export const getParams = (str: string): QueryParams => {
 export const paramsToString = (params: QueryParams): string => {
     const queryPrefix = '/?'
     const paramPrefix = '&'
-        let queryParams = ''
+        const queryParams = ''
         const paramKeys = Object.keys(params)
         return  paramKeys.length > 0 ? paramKeys.reduce((acc: string, curr)=> {
             const parmStr = (`${curr}=${params[curr]}`)
