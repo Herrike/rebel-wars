@@ -10,7 +10,6 @@ import {
   isSpeciesCollection,
   isStarship,
   isStarshipsCollection,
-  isValidLang,
   isValidSection,
   isVehicle,
   isVehiclesCollection

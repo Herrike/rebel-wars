@@ -2,9 +2,8 @@ import { Planet } from "../routes/planets/Planets.types"
 import { Specie } from "../routes/species/Species.types"
 import { Starship } from "../routes/starships/Starships.types"
 import { Vehicle } from "../routes/vehicles/Vehicles.types"
-import { LangType, SectionType } from "../contexts/sectionContext.types"
+import { SectionType } from "../contexts/sectionContext.types"
 import { objectHasAllRequiredKeys } from "./object"
-import { Interest } from "./filters.types"
 import { GenericResponseData } from "./typeguards.types"
 
 export const isGenericObject = (item: unknown): item is Record<string, unknown> => {
@@ -39,18 +38,6 @@ export const isStarshipsCollection = (collection: unknown): collection is Starsh
 
 export const isValidSection = (section: unknown): section is SectionType => {
     return typeof section === 'string' && ['planets', 'vehicles', 'species', 'starships', ''].includes(section)
-}
-
-export const isValidLang = (lang: string): lang is LangType => {
-    return lang === 'wookiee' || lang === ''
-}
-
-export const isInterest = (item: unknown): item is Interest => {
-    return isGenericObject(item) && 'preferred' in item && 'discarded' in item
-}
-
-export const isRange = (item: unknown): item is Range => {
-    return isGenericObject(item) && 'min' in item && 'max' in item
 }
 
 export const isFilterType = (section: SectionType): section is Extract<'planets'|'species'|'starships',SectionType> =>  section !== 'vehicles'

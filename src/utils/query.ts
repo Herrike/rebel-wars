@@ -22,6 +22,7 @@ export const isNumberInRange = (value: number, min = 0, max = 1): boolean => {
     return value >= min && value <= max
 }
 
+// used to manipulate page filter at our disposal (we don't want to pass it to fetch fn when page is 1, for instance
 export const getPageParam = (page: string | null): string => {
     if(!page){
         return ''
