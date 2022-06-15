@@ -14,29 +14,29 @@ body {
   background:black url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/stars-back.png) ;
 }
 
-.App {
+.app {
   text-align: center;
   color: white;
   padding: 100px 0 0 0;
 }
 
-.App .rebel-alliance-logo svg {
+.app .rebel-alliance-logo svg {
   width: 25px;
   height: auto;
   fill: white;
 }
 
-.App a {
+.app a {
   color: white;
   text-decoration: none;
 }
 
 
-.App header {
+.app header {
   padding: 50px 0;
 }
 
-.App .main-nav {
+.app .main-nav {
   background-color: black;
   padding: 20px 10px;
   position: fixed;
@@ -45,36 +45,36 @@ body {
   z-index: 10;
 }
 
-.App .main-nav a {
+.app .main-nav a {
   font-weight: 700;
 }
 
-.App .main-nav .lang {
+.app .main-nav .lang {
   padding: 10px 15px;
   display: flex;
   text-transform: capitalize;
   font-size: .9rem;
 }
-.App .main-nav select {
+.app .main-nav select {
   border: 1px solid white;
   background-color: transparent;
   border: 0;
   margin-left: 15px;
 }
 
-.App .main-nav ul {
+.app .main-nav ul {
   display: flex;
   justify-content: space-around;
   align-items: center;
   list-style: none;
 }
 
-.App .main-nav ul:first-of-type {
+.app .main-nav ul:first-of-type {
   border-bottom: 1px solid white;
   padding: 0 0 10px;
 }
 
-.App .filter {
+.app .filter {
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -82,7 +82,7 @@ body {
   list-style: none;
 }
 
-.App .filter button {
+.app .filter button {
   border: 1px solid white;
   background-color: black;
   color: white;
@@ -90,11 +90,11 @@ body {
   margin-left: 10px;
 }
 
-.App .filter button {
+.app .filter button {
   cursor: pointer;
 }
 
-.App .filter button:before {
+.app .filter button:before {
   display: inline-block;
   content: '';
   width: 8px;
@@ -103,42 +103,45 @@ body {
   margin-right: 5px;
 }
 
-.App .filter button[data-filter="true"]:before {
+.app .filter button[data-filter="true"]:before {
   background-color: white;
 }
 
-.App nav li {
+.app nav li {
   text-transform: uppercase;
 }
 
-.App .grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 250px 250px; 
-  column-gap: 50px;
-  row-gap: 50px;
+.app .grid {
+  padding: 25px 0;
+  max-width: 990px;
+  margin: auto;
+  display: flex;  
+  flex-flow: row wrap;
+  justify-content: space-between;
+  
 }
 
-.App .grid article {
+.app .grid article {
+  width: 33.3%;
   justify-self: center;
 }
 
-.App .grid ul {
+.app .grid ul {
   list-style: none;
   padding-bottom: 15px;
 }
 
-.App h3 {
+.app h3 {
   padding-bottom: 15px;
 }
 
-.App .pagination-nav {
+.app .pagination-nav {
   width: 100%;
   position: fixed;
   bottom: 25px;
 }
 
-.App .pagination-nav ul {
+.app .pagination-nav ul {
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
@@ -148,11 +151,11 @@ body {
   list-style: none;
 }
 
-.App .message-pagination-disabled {
+.app .message-pagination-disabled {
   color: #444;
 }
 
-.App .pagination-nav button {
+.app .pagination-nav button {
   padding: 10px;
   background: black;
   color: white;
@@ -160,11 +163,11 @@ body {
 }
 
 
-.App .pagination-nav button:not(:disabled):hover {
+.app .pagination-nav button:not(:disabled):hover {
   cursor: pointer
 }
 
-.App .pagination-nav button:disabled {
+.app .pagination-nav button:disabled {
   color: #444;
   border: 1px solid #444;
 }

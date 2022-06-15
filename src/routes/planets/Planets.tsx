@@ -51,7 +51,7 @@ const Planets: FC = () => {
         activeFilter={activeFilter}
         setActiveFilter={setActiveFilter}
       />
-      <h2>Collection: {activeSection}</h2>
+      <h2>{activeSection}</h2>
       <section className='grid'>
         {planets?.map(
           ({ name, diameter, gravity, population, surface_water, terrain, orbital_period }) => {

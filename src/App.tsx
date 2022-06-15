@@ -14,7 +14,7 @@ const App: FC = () => {
   const [contentSection, setContentSection] = useState<GenericResponseData | null>(null)
 
   return (
-    <div className='App' data-testid='app'>
+    <div className='app' data-testid='app'>
       <SectionContext.Provider
         value={{ activeSection, contentSection, setActiveSection, setContentSection }}
       >

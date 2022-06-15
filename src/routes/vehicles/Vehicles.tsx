@@ -36,7 +36,7 @@ const Vehicles: FC = () => {
 
   return (
     <>
-      <h2>Collection: {activeSection}</h2>
+      <h2>{activeSection}</h2>
       <section className='grid'>
         {vehicles?.map(
           ({

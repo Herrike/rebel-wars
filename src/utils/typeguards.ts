@@ -38,7 +38,7 @@ export const isStarship = (item: unknown, requiredKeys = ['model', 'starship_cla
 export const isStarshipsCollection = (collection: unknown): collection is Starship[] => Array.isArray(collection) && isStarship(collection[0])
 
 export const isValidSection = (section: unknown): section is SectionType => {
-    return typeof section === 'string' && ['planets','vehicles','species', 'starships'].includes(section)
+    return typeof section === 'string' && ['planets', 'vehicles', 'species', 'starships', ''].includes(section)
 }
 
 export const isValidLang = (lang: string): lang is LangType => {
@@ -53,5 +53,5 @@ export const isRange = (item: unknown): item is Range => {
     return isGenericObject(item) && 'min' in item && 'max' in item
 }
 
-export const isFilterType = (section: SectionType): section is Extract<'planets'|'species',SectionType> =>  section !== 'starships' && section !== 'vehicles'
+export const isFilterType = (section: SectionType): section is Extract<'planets'|'species'|'starships',SectionType> =>  section !== 'vehicles'
 

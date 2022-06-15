@@ -51,7 +51,7 @@ const Starships: FC = () => {
         activeFilter={activeFilter}
         setActiveFilter={setActiveFilter}
       />
-      <h2>Collection: {activeSection}</h2>
+      <h2>{activeSection}</h2>
       <section className='grid'>
         {starships?.map(
           ({
