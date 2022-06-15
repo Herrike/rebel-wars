@@ -49,27 +49,27 @@ body {
   font-weight: 700;
 }
 
-.App nav .lang {
+.App .main-nav .lang {
   padding: 10px 15px;
   display: flex;
   text-transform: capitalize;
   font-size: .9rem;
 }
-.App nav select {
+.App .main-nav select {
   border: 1px solid white;
   background-color: transparent;
   border: 0;
   margin-left: 15px;
 }
 
-.App nav ul {
+.App .main-nav ul {
   display: flex;
   justify-content: space-around;
   align-items: center;
   list-style: none;
 }
 
-.App nav ul:first-of-type {
+.App .main-nav ul:first-of-type {
   border-bottom: 1px solid white;
   padding: 0 0 10px;
 }
@@ -132,16 +132,27 @@ body {
   padding-bottom: 15px;
 }
 
-.App .pagination {
-  margin: 0 auto;
-  max-width: 700px;
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  justify-content: space-evenly;
+.App .pagination-nav {
+  width: 100%;
+  position: fixed;
+  bottom: 25px;
 }
 
-.App .pagination button {
+.App .pagination-nav ul {
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-self: center;
+  max-width: 700px;
+  list-style: none;
+}
+
+.App .message-pagination-disabled {
+  color: #444;
+}
+
+.App .pagination-nav button {
   padding: 10px;
   background: black;
   color: white;
@@ -149,11 +160,11 @@ body {
 }
 
 
-.App .pagination button:not(:disabled):hover {
+.App .pagination-nav button:not(:disabled):hover {
   cursor: pointer
 }
 
-.App .pagination button:disabled {
+.App .pagination-nav button:disabled {
   color: #444;
   border: 1px solid #444;
 }

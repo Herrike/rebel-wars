@@ -14,24 +14,31 @@ const Pagination: FC<PaginationProps> = ({ items, page, setPage, disabled }) => 
     }
   }
   return (
-    <ul className='pagination'>
-      {arrayFromNumber(pages).map((_, i) => {
-        const pageKey = i + 1
-        const pageName = `page-${pageKey}`
-        return (
-          <li key={pageName}>
-            <button
-              onClick={changePageHandler}
-              data-page={pageKey}
-              data-testid={pageName}
-              disabled={disabled}
-            >
-              {String(pageKey) === page ? <strong>{pageKey}</strong> : pageKey}
-            </button>
-          </li>
-        )
-      })}
-    </ul>
+    <nav className='pagination-nav'>
+      {disabled && (
+        <p className='message-pagination-disabled'>
+          [ ! ] Pagination disabled when a strategy filter is active
+        </p>
+      )}
+      <ul>
+        {arrayFromNumber(pages).map((_, i) => {
+          const pageKey = i + 1
+          const pageName = `page-${pageKey}`
+          return (
+            <li key={pageName}>
+              <button
+                onClick={changePageHandler}
+                data-page={pageKey}
+                data-testid={pageName}
+                disabled={disabled}
+              >
+                {String(pageKey) === page ? <strong>{pageKey}</strong> : pageKey}
+              </button>
+            </li>
+          )
+        })}
+      </ul>
+    </nav>
   )
 }
 

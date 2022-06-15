@@ -23,7 +23,7 @@ html, body {
 	 font-weight: bold;
 	 font-size: 1rem;
 	 text-align: justify;
-	 color: #ecc760;
+	 color: white;
 	 line-height: 1.5;
 	 transform: perspective(230px) rotateX(45deg) translate3d(0, 150%, 0);
 	 transform-style: preserve-3d;
@@ -44,7 +44,7 @@ html, body {
 	 width: 100%;
 }
 .svg_fill {
-    fill:#ECC760
+    fill:white;
 }
  .text--center {
 	 text-align: center;
