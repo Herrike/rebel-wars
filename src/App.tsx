@@ -9,6 +9,7 @@ const Loading = React.lazy(() =>
 const Layout = React.lazy(() =>
   import('./components').then((module) => ({ default: module.Layout }))
 )
+
 const App = () => {
   return (
     <div className='App' data-testid='app'>

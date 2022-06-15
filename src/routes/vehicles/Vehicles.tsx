@@ -13,6 +13,7 @@ const ApiError = React.lazy(() =>
 )
 
 const Vehicles: FC = () => {
+  const section = 'vehicles'
   const { pathname } = useLocation()
   const [vehicles, setVehicles] = useState<Vehicle[] | null>(null)
   const [page, setPage] = useState<string>('')
@@ -39,6 +40,7 @@ const Vehicles: FC = () => {
         <ApiError error={error} />
       ) : (
         <>
+          <h2>Collection: {section}</h2>
           <section className='grid'>
             {vehicles?.map(
               ({
