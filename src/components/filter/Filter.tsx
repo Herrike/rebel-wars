@@ -18,7 +18,7 @@ const Filter: FC<{
         Filter <strong>{section.toUpperCase()}</strong> by:
       </li>
       <li>
-        <button onClick={filterPlanetsHandler}>
+        <button onClick={filterPlanetsHandler} data-filter={activeFilter}>
           {getCommissionerNameBySection(section, true)} strategy
         </button>
       </li>

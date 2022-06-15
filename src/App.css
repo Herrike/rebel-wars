@@ -67,13 +67,15 @@ body {
   padding: 0 0 10px;
 }
 
-.App nav .filter {
+.App .filter {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   padding: 10px 15px;
+  list-style: none;
 }
 
-.App nav .filter button {
+.App .filter button {
   border: 1px solid white;
   background-color: black;
   color: white;
@@ -81,11 +83,11 @@ body {
   margin-left: 10px;
 }
 
-.App nav .filter button {
+.App .filter button {
   cursor: pointer;
 }
 
-.App nav .filter button:before {
+.App .filter button:before {
   display: inline-block;
   content: '';
   width: 8px;
@@ -94,7 +96,7 @@ body {
   margin-right: 5px;
 }
 
-.App nav .filter button[data-clicked="true"]:before {
+.App .filter button[data-filter="true"]:before {
   background-color: white;
 }
 
