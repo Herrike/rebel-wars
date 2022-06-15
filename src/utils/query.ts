@@ -22,4 +22,9 @@ export const isNumberInRange = (value: number, min = 0, max = 1): boolean => {
     return value >= min && value <= max
 }
 
-export const getPageParam = (page: string): string => parseInt(page) > 1 ? `?page=${page}` : ''
+export const getPageParam = (page: string | null): string => {
+    if(!page){
+        return ''
+    }
+    return parseInt(page) > 1 ? `?page=${page}` : ''
+}

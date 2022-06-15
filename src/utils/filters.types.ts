@@ -16,9 +16,14 @@ export interface Strategies {
         gravity: Range
     }
     species: {
-        [key: string]: Interest | Range
+        [key: string]: Interest
         classification: Interest
         designation: Interest
         skin_colors: Interest
+    },
+    starships: {
+        [key: string]: Interest
+        name: Interest
     }
+
 }

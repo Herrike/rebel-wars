@@ -1,7 +1,11 @@
 import React, { FC, MouseEvent } from 'react'
 import { arrayFromNumber } from '../../utils/array'
 
-const Pagination: FC<{ items: number; setPage: (page: string) => void }> = ({ items, setPage }) => {
+const Pagination: FC<{ items: number; page: string; setPage: (page: string) => void }> = ({
+  items,
+  page,
+  setPage
+}) => {
   // number of pages based on 10 max items per page
   const pages = Math.ceil(items / 10)
 
@@ -20,7 +24,7 @@ const Pagination: FC<{ items: number; setPage: (page: string) => void }> = ({ it
         return (
           <li key={pageName}>
             <button onClick={changePageHandler} data-page={pageKey} data-testid={pageName}>
-              {pageKey}
+              {String(pageKey) === page ? <strong>{pageKey}</strong> : pageKey}
             </button>
           </li>
         )

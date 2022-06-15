@@ -1,4 +1,5 @@
 @import url(./css/space.css);
+@import url(./css/intro.css);
 
 * {
   padding: 0;
@@ -17,6 +18,12 @@ body {
   text-align: center;
   color: white;
   padding: 100px 0 0 0;
+}
+
+.App .rebel-alliance-logo svg {
+  width: 25px;
+  height: auto;
+  fill: white;
 }
 
 .App a {

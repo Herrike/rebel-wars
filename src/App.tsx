@@ -1,23 +1,27 @@
-import React, { Suspense } from 'react'
+import React, { FC, useState } from 'react'
 import './App.css'
 import { Outlet } from 'react-router-dom'
-
-const Loading = React.lazy(() =>
-  import('./components').then((module) => ({ default: module.Loading }))
-)
+import { SectionContext } from './contexts/sectionContext'
+import { SectionType } from './contexts/sectionContext.types'
+import { GenericResponseData } from './utils/typeguards.types'
 
 const Layout = React.lazy(() =>
   import('./components').then((module) => ({ default: module.Layout }))
 )
 
-const App = () => {
+const App: FC = () => {
+  const [activeSection, setActiveSection] = useState<SectionType>('')
+  const [contentSection, setContentSection] = useState<GenericResponseData | null>(null)
+
   return (
     <div className='App' data-testid='app'>
-      <Suspense fallback={<Loading />}>
+      <SectionContext.Provider
+        value={{ activeSection, contentSection, setActiveSection, setContentSection }}
+      >
         <Layout>
           <Outlet />
         </Layout>
-      </Suspense>
+      </SectionContext.Provider>
     </div>
   )
 }
