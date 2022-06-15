@@ -27,7 +27,7 @@ const Species: FC = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const [species, setSpecies] = useState<Specie[] | null>(null)
   const [activeFilter, setActiveFilter] = useState<boolean>(false)
-  const [page, setPage] = useState('')
+  const [page, setPage] = useState('1')
 
   const { data, error } = useFetch(`api/${pathname}${getPageParam(page)}`)
 
@@ -46,15 +46,13 @@ const Species: FC = () => {
   }, [data, searchParams])
 
   useEffect(() => {
-    if (parseInt(page) > 1) {
-      searchParams.set('page', `${page}`)
-    }
-  }, [page])
-
-  useEffect(() => {
     const filter = `${activeFilter}`
-    setSearchParams({ filter })
-  }, [activeFilter])
+    if (activeFilter === true) {
+      setSearchParams({ page: `${page}`, filter })
+    } else {
+      setSearchParams({ page: `${page}` })
+    }
+  }, [activeFilter, page])
 
   return (
     <Suspense fallback={<Loading />}>

@@ -9,11 +9,7 @@ const Pagination: FC<{ items: number; setPage: (page: string) => void }> = ({ it
     const selectedPage = parseInt(event.currentTarget.getAttribute('data-page') || '') // NaN if page = ''
 
     if (Number.isInteger(selectedPage)) {
-      if (selectedPage === 1) {
-        setPage('')
-      } else {
-        setPage(`${selectedPage}`)
-      }
+      setPage(`${selectedPage}`)
     }
   }
   return (
