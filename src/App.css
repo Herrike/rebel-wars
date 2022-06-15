@@ -149,6 +149,11 @@ body {
 }
 
 
-.App .pagination button:hover {
+.App .pagination button:not(:disabled):hover {
   cursor: pointer
+}
+
+.App .pagination button:disabled {
+  color: #444;
+  border: 1px solid #444;
 }

@@ -2,14 +2,15 @@ import React, { FC } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Layout } from '../../components'
 import { useTimeout } from '../../hooks'
+import { HomeProps } from './Home.types'
 
-const Home: FC = () => {
+const Home: FC<HomeProps> = ({ introTimeout = 50000 }) => {
   const navigate = useNavigate()
-  useTimeout(() => navigate(`planets`), 50000)
+  useTimeout(() => navigate(`planets`), introTimeout)
 
   return (
     <Layout>
-      <div className='story'>
+      <div className='story' data-testid='story'>
         <div className='story_head'>
           <div className='logo'>
             <svg width='634.104' height='271.366' viewBox='0 0 634.10401 271.366'>

@@ -72,7 +72,7 @@ const Vehicles: FC = () => {
         )}
       </section>
       {isGenericResponseData(contentSection) && contentSection?.count > 10 && (
-        <Pagination items={contentSection.count} page={page} setPage={setPage} />
+        <Pagination items={contentSection.count} page={page} setPage={setPage} disabled={false} />
       )}
     </>
   )

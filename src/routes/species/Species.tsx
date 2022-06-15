@@ -67,11 +67,14 @@ const Species: FC = () => {
           )
         })}
       </section>
-      {isGenericResponseData(contentSection) &&
-        contentSection?.count > 10 &&
-        activeFilter === false && (
-          <Pagination items={contentSection.count} page={page} setPage={setPage} />
-        )}
+      {isGenericResponseData(contentSection) && contentSection?.count > 10 && (
+        <Pagination
+          items={contentSection.count}
+          page={page}
+          setPage={setPage}
+          disabled={activeFilter}
+        />
+      )}
     </>
   )
 }
