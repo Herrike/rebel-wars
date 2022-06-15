@@ -34,8 +34,9 @@ const Starships: FC = () => {
   }, [data, searchParams])
 
   useEffect(() => {
-    if (parseInt(page) > 1) {
-      searchParams.set('page', `${page}`)
+    const parsedPage = parseInt(page)
+    if (Number.isInteger(parsedPage) && parsedPage > 1) {
+      setPage(page)
     }
   }, [page])
 
