@@ -1,33 +1,20 @@
-import React, { FC, MouseEvent, useContext } from 'react'
-import { SectionContext } from '../../contexts/sectionContext'
+import React, { FC, MouseEvent } from 'react'
 import { arrayFromNumber } from '../../utils/array'
-import { getParams, prepareQuery, QueryParams } from '../../utils/query'
 
-const Pagination: FC = () => {
-  const { activeSection, querySection, contentSection, setQuerySection } =
-    useContext(SectionContext)
-
+const Pagination: FC<{ items: number; setPage: (page: string) => void }> = ({ items, setPage }) => {
   // number of pages based on 10 max items per page
-  const pages =
-    contentSection && contentSection.count > 10 ? Math.ceil(contentSection.count / 10) : 1
+  const pages = Math.ceil(items / 10)
 
   const changePageHandler = (event: MouseEvent<HTMLButtonElement>): void => {
-    const page = event.currentTarget.getAttribute('data-page') || ''
-    const selectedPage = parseInt(page) // NaN if page = ''
-    const params: QueryParams = getParams(querySection)
-    const querySectionPage = parseInt(params.page)
+    const selectedPage = parseInt(event.currentTarget.getAttribute('data-page') || '') // NaN if page = ''
 
-    if (Number.isInteger(selectedPage) && selectedPage > 1 && selectedPage !== querySectionPage) {
-      params.page = `${selectedPage}`
-    } else if (
-      Number.isInteger(selectedPage) &&
-      selectedPage === 1 &&
-      selectedPage !== querySectionPage
-    ) {
-      delete params.page
+    if (Number.isInteger(selectedPage)) {
+      if (selectedPage === 1) {
+        setPage('')
+      } else {
+        setPage(`${selectedPage}`)
+      }
     }
-    const query = prepareQuery(activeSection, params)
-    setQuerySection(query)
   }
   return (
     <ul className='pagination'>

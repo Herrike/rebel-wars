@@ -1,12 +1,12 @@
 import React, { FC, useContext, MouseEvent } from 'react'
+import { Link } from 'react-router-dom'
 import { SectionContext } from '../../contexts/sectionContext'
 import { getParams, prepareQuery } from '../../utils/query'
 import { isValidSection } from '../../utils/typeguards'
 
 const SwitchLang = React.lazy(() =>
-  import('../').then((module) => ({ default: module.SwitchLang })),
+  import('../').then((module) => ({ default: module.SwitchLang }))
 )
-const Filter = React.lazy(() => import('../').then((module) => ({ default: module.Filter })))
 
 const sections = ['planets', 'vehicles', 'species', 'starships']
 
@@ -30,21 +30,19 @@ const Navigation: FC = () => {
       <ul>
         {sections.map((section) => (
           <li key={section}>
-            <a
-              href={`#${section}`}
+            <Link
               data-testid={`anchor-${section}`}
-              data-section={section}
+              to={`/${section}`}
               onClick={changeSectionHandler}
             >
               {section}
-            </a>
+            </Link>
           </li>
         ))}
         <li className='lang'>
           Language <SwitchLang />
         </li>
       </ul>
-      <Filter />
     </nav>
   )
 }

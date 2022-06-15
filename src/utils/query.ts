@@ -51,3 +51,5 @@ export const getGravity = (str: string): number | string => {
 export const isNumberInRange = (value: number, min = 0, max = 1): boolean => {
     return value >= min && value <= max
 }
+
+export const getPageParam = (page: string): string => parseInt(page) > 1 ? `?page=${page}` : ''
