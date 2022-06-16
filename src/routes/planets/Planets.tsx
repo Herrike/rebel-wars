@@ -62,12 +62,9 @@ const Planets: FC = () => {
     }
   }, [activeFilter, page])
 
-  console.log(activeFilter, planets)
-
   useEffect(() => {
     if (isGenericResponseData(contentSection) && isGenericCollection(contentSection.results)) {
-      const { results } = contentSection
-      const updatedResults = [...results]
+      const updatedResults = [...contentSection.results]
       if (searchParams.get('filter') === 'true' && isFilterType(activeSection)) {
         const filteredResults = filterContentByStrategy(updatedResults, activeSection)
         if (filteredResults.length && isPlanetsCollection(filteredResults)) {

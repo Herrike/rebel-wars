@@ -8,7 +8,7 @@ import {
   isGenericResponseData,
   isStarshipsCollection
 } from '../../utils/typeguards'
-import { filterContentByStrategy } from '../../utils/filters'
+import { filterContentByStrategy, getCommissionerNameBySection } from '../../utils/filters'
 import { Starship } from './Starships.types'
 
 const Filter = React.lazy(() =>
@@ -83,6 +83,12 @@ const Starships: FC = () => {
               </article>
             )
           }
+        )}
+        {!starships?.length && activeFilter && (
+          <p>
+            Scanner results: no <strong>{activeSection}</strong> found for{' '}
+            {getCommissionerNameBySection(activeSection, true)} strategy
+          </p>
         )}
       </section>
       {isGenericResponseData(contentSection) && contentSection?.count > 10 && (

@@ -2,9 +2,10 @@ import React, { FC, ReactNode, Suspense, useContext, useEffect } from 'react'
 import { useLocation, useSearchParams } from 'react-router-dom'
 import { Loading } from '../'
 import { SectionContext } from '../../contexts/sectionContext'
-import { useFetch } from '../../hooks'
+import { useFetch, useWindowSize } from '../../hooks'
 import { getPageParam } from '../../utils/query'
 import { isGenericResponseData, isGenericCollection, isValidSection } from '../../utils/typeguards'
+import Unauthorized from '../unauthorized/Unauthorized'
 
 const Navigation = React.lazy(() =>
   import('../').then((module) => ({ default: module.Navigation }))
@@ -17,6 +18,7 @@ const Layout: FC<{ children: ReactNode }> = ({ children }) => {
   const { activeSection, contentSection, setActiveSection, setContentSection } =
     useContext(SectionContext)
   const [searchParams] = useSearchParams()
+  const { width: viewportWidth } = useWindowSize()
   const { data, error } = useFetch(`api${pathname}${getPageParam(searchParams.get('page'))}`)
 
   useEffect(() => {
@@ -44,7 +46,7 @@ const Layout: FC<{ children: ReactNode }> = ({ children }) => {
         <>
           <Navigation />
           <Space />
-          {children}
+          {viewportWidth < 1024 ? <Unauthorized /> : children}
         </>
       )}
     </Suspense>

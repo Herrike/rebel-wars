@@ -55,7 +55,6 @@ export const getPlanetAttributes = (width: number, height: number, planetComposi
 }
 
 export const prepareCanvas = (canvas: HTMLCanvasElement, planetComposition: PlanetComposition): PreparedCanvas => {
-    console.log(canvas.width, canvas.height)
     const ctx = canvas.getContext('2d')!
     const width = 100
     const height = 100
