@@ -2,7 +2,12 @@ import React, { FC, useContext, useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
 import { SectionContext } from '../../contexts/sectionContext'
-import { isFilterType, isGenericResponseData, isStarshipsCollection } from '../../utils/typeguards'
+import {
+  isFilterType,
+  isGenericCollection,
+  isGenericResponseData,
+  isStarshipsCollection
+} from '../../utils/typeguards'
 import { filterContentByStrategy } from '../../utils/filters'
 import { Starship } from './Starships.types'
 
@@ -31,16 +36,18 @@ const Starships: FC = () => {
   }, [activeFilter, page])
 
   useEffect(() => {
-    if (isGenericResponseData(contentSection) && isStarshipsCollection(contentSection?.results)) {
-      const { results } = contentSection
-      let updatedResults = [...results]
+    if (isGenericResponseData(contentSection) && isGenericCollection(contentSection?.results)) {
+      const updatedResults = [...contentSection.results]
       if (searchParams.get('filter') === 'true' && isFilterType(activeSection)) {
         const filteredResults = filterContentByStrategy(updatedResults, activeSection)
-        if (isStarshipsCollection(filteredResults)) {
-          updatedResults = filteredResults
+        if (filteredResults.length && isStarshipsCollection(filteredResults)) {
+          setStarships(filteredResults)
+        } else {
+          setStarships([])
         }
+      } else if (isStarshipsCollection(updatedResults)) {
+        setStarships(updatedResults)
       }
-      setStarships(updatedResults)
     }
   }, [contentSection, searchParams])
 
@@ -55,10 +62,7 @@ const Starships: FC = () => {
       <section className='grid'>
         {starships?.map(
           ({
-            cargo_capacity,
-            cost_in_credits,
             hyperdrive_rating,
-            length,
             manufacturer,
             max_atmosphering_speed,
             model,
@@ -73,11 +77,8 @@ const Starships: FC = () => {
                   <li>model: {model}</li>
                   <li>class: {starship_class}</li>
                   <li>manufacturer: {manufacturer}</li>
-                  <li>length: {length}</li>
                   <li>hyperdrive rating: {hyperdrive_rating}</li>
                   <li>max atmosphering speed: {max_atmosphering_speed}</li>
-                  <li>cost in credits: {cost_in_credits}</li>
-                  <li>cargo capacity: {cargo_capacity}</li>
                 </ul>
               </article>
             )

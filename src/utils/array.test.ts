@@ -1,6 +1,6 @@
 import { arrayFromNumber, isEmptyArray } from "./array"
 
-describe('arrayFromNumber', () => { 
+describe('arrayFromNumber fn', () => { 
     test('should return an array of 10 chuncks when size 10 is passed', () => {
         const array = arrayFromNumber(10)
         expect(array.length).toBe(10)
@@ -11,7 +11,7 @@ describe('arrayFromNumber', () => {
      })
  })
 
- describe('isEmptyArray', () => { 
+ describe('isEmptyArray fn', () => { 
     test('should return true when an empty array is passed', () => {
         const array: unknown = []
         expect(isEmptyArray(array)).toBeTruthy()

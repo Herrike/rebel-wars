@@ -1,5 +1,6 @@
 import React, { FC, ReactNode, Suspense, useContext, useEffect } from 'react'
 import { useLocation, useSearchParams } from 'react-router-dom'
+import { Loading } from '../'
 import { SectionContext } from '../../contexts/sectionContext'
 import { useFetch } from '../../hooks'
 import { getPageParam } from '../../utils/query'
@@ -9,7 +10,6 @@ const Navigation = React.lazy(() =>
   import('../').then((module) => ({ default: module.Navigation }))
 )
 const Space = React.lazy(() => import('../').then((module) => ({ default: module.Space })))
-const Loading = React.lazy(() => import('../').then((module) => ({ default: module.Loading })))
 const ApiError = React.lazy(() => import('../').then((module) => ({ default: module.ApiError })))
 
 const Layout: FC<{ children: ReactNode }> = ({ children }) => {
@@ -35,8 +35,9 @@ const Layout: FC<{ children: ReactNode }> = ({ children }) => {
       }
     }
   }, [contentSection, data])
+
   return (
-    <Suspense fallback={<Loading />}>
+    <Suspense fallback={<Loading resourceName={activeSection} />}>
       {error ? (
         <ApiError error={error} />
       ) : (

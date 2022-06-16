@@ -22,6 +22,16 @@ export const getCommissionerNameBySection = (section: SectionType, withGenitive 
     return name
 }
 
+export const getVehicleType = (max_atmosphering_speed: string):string => {
+    const max_speed = parseInt(max_atmosphering_speed)
+    if(isNaN(max_speed)){
+        return 'unknown'
+    }
+    else {
+        return `${max_speed <= 100?  'land' : 'aerial'} vehicle`
+    }
+}
+
 export const strategies: Strategies = {
     planets: {
         climate: {
@@ -67,8 +77,6 @@ export const filterContentByStrategy = (results: unknown[], activeSection: Extra
             const parsedGravity = getGravity(result.gravity)
             return climate.preferred.includes(result.climate) && !climate.discarded.includes(result.climate) && terrain.preferred.some(t => result.terrain.includes(t)) && typeof parsedGravity === 'number' && isNumberInRange(parsedGravity, min , max);
         })
-
-        
     }
     else if(activeSection === 'species' && isSpeciesCollection(results)){
         const {classification, designation, skin_colors} = strategies.species
@@ -83,14 +91,4 @@ export const filterContentByStrategy = (results: unknown[], activeSection: Extra
         })
     }
     return filteredResults.length > 0 ? filteredResults : []
-}
-
-export const getVehicleType = (max_atmosphering_speed: string):string => {
-    const max_speed = parseInt(max_atmosphering_speed)
-    if(isNaN(max_speed)){
-        return 'unknown'
-    }
-    else {
-        return `${max_speed <= 100?  'land' : 'aerial'} vehicle`
-    }
 }

@@ -2,8 +2,13 @@ import React, { FC, useContext, useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
 import { SectionContext } from '../../contexts/sectionContext'
-import { isFilterType, isGenericResponseData, isSpeciesCollection } from '../../utils/typeguards'
-import { filterContentByStrategy } from '../../utils/filters'
+import {
+  isFilterType,
+  isGenericCollection,
+  isGenericResponseData,
+  isSpeciesCollection
+} from '../../utils/typeguards'
+import { filterContentByStrategy, getCommissionerNameBySection } from '../../utils/filters'
 import { Specie } from './Species.types'
 
 const Filter = React.lazy(() =>
@@ -31,16 +36,18 @@ const Species: FC = () => {
   }, [activeFilter, page])
 
   useEffect(() => {
-    if (isGenericResponseData(contentSection) && isSpeciesCollection(contentSection?.results)) {
-      const { results } = contentSection
-      let updatedResults = [...results]
+    if (isGenericResponseData(contentSection) && isGenericCollection(contentSection?.results)) {
+      const updatedResults = [...contentSection.results]
       if (searchParams.get('filter') === 'true' && isFilterType(activeSection)) {
         const filteredResults = filterContentByStrategy(updatedResults, activeSection)
-        if (isSpeciesCollection(filteredResults)) {
-          updatedResults = filteredResults
+        if (filteredResults.length && isSpeciesCollection(filteredResults)) {
+          setSpecies(filteredResults)
+        } else {
+          setSpecies([])
         }
+      } else if (isSpeciesCollection(updatedResults)) {
+        setSpecies(updatedResults)
       }
-      setSpecies(updatedResults)
     }
   }, [contentSection, searchParams])
 
@@ -66,6 +73,12 @@ const Species: FC = () => {
             </article>
           )
         })}
+        {!species?.length && activeFilter && (
+          <p>
+            Scanner results: no <strong>{activeSection}</strong> found for{' '}
+            {getCommissionerNameBySection(activeSection, true)} strategy
+          </p>
+        )}
       </section>
       {isGenericResponseData(contentSection) && contentSection?.count > 10 && (
         <Pagination

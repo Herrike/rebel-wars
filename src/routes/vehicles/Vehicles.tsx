@@ -38,38 +38,21 @@ const Vehicles: FC = () => {
     <>
       <h2>{activeSection}</h2>
       <section className='grid'>
-        {vehicles?.map(
-          ({
-            name,
-            vehicle_class,
-            model,
-            max_atmosphering_speed,
-            manufacturer,
-            length,
-            cost_in_credits,
-            cargo_capacity,
-            passengers
-          }) => {
-            const key = name.toLowerCase()
-            return (
-              <article key={key}>
-                <h3>{name}</h3>
-                <ul>
-                  <li>model: {model}</li>
-                  <li>class: {vehicle_class}</li>
-                  <li>type: {getVehicleType(max_atmosphering_speed)}</li>
-                  <li>max atmosphering speed: {max_atmosphering_speed}</li>
-                  <li>manufacturer: {manufacturer}</li>
-                  <li>length: {length}</li>
-
-                  <li>cost in credits: {cost_in_credits}</li>
-                  <li>cargo capacity: {cargo_capacity}</li>
-                  <li>passengers: {passengers}</li>
-                </ul>
-              </article>
-            )
-          }
-        )}
+        {vehicles?.map(({ name, vehicle_class, model, max_atmosphering_speed, manufacturer }) => {
+          const key = name.toLowerCase()
+          return (
+            <article key={key}>
+              <h3>{name}</h3>
+              <ul>
+                <li>model: {model}</li>
+                <li>class: {vehicle_class}</li>
+                <li>type: {getVehicleType(max_atmosphering_speed)}</li>
+                <li>max atmosphering speed: {max_atmosphering_speed}</li>
+                <li>manufacturer: {manufacturer}</li>
+              </ul>
+            </article>
+          )
+        })}
       </section>
       {isGenericResponseData(contentSection) && contentSection?.count > 10 && (
         <Pagination items={contentSection.count} page={page} setPage={setPage} disabled={false} />

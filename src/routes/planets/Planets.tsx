@@ -1,10 +1,16 @@
-import React, { FC, useContext, useEffect, useState } from 'react'
+import React, { FC, useContext, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
 import { SectionContext } from '../../contexts/sectionContext'
-import { isFilterType, isGenericResponseData, isPlanetsCollection } from '../../utils/typeguards'
-import { filterContentByStrategy } from '../../utils/filters'
+import {
+  isFilterType,
+  isGenericCollection,
+  isGenericResponseData,
+  isPlanetsCollection
+} from '../../utils/typeguards'
+import { filterContentByStrategy, getCommissionerNameBySection } from '../../utils/filters'
 import { Planet } from './Planets.types'
+import { renderPlanet } from '../../utils/draw-planet'
 
 const Filter = React.lazy(() =>
   import('../../components').then((module) => ({ default: module.Filter }))
@@ -13,6 +19,32 @@ const Filter = React.lazy(() =>
 const Pagination = React.lazy(() =>
   import('../../components').then((module) => ({ default: module.Pagination }))
 )
+
+const PlanetPreview: FC<{ planet: Planet }> = ({ planet }) => {
+  const { name, diameter, gravity, surface_water, terrain } = planet
+  const key = name.toLowerCase()
+  const drawPlanet = useRef<HTMLCanvasElement>(null)
+  useLayoutEffect(() => {
+    if (drawPlanet.current) {
+      renderPlanet(drawPlanet.current, { diameter, surface_water, terrain })
+    }
+  })
+
+  return (
+    <article key={key}>
+      <h3>{name}</h3>
+      <div className='planet-card'>
+        <canvas ref={drawPlanet}>{''}</canvas>
+        <ul>
+          <li>diameter: {diameter}</li>
+          <li>gravity: {gravity}</li>
+          <li>surface water: {surface_water}</li>
+          <li>terrain: {terrain}</li>
+        </ul>
+      </div>
+    </article>
+  )
+}
 
 const Planets: FC = () => {
   const { activeSection, contentSection } = useContext(SectionContext)
@@ -30,17 +62,22 @@ const Planets: FC = () => {
     }
   }, [activeFilter, page])
 
+  console.log(activeFilter, planets)
+
   useEffect(() => {
-    if (isGenericResponseData(contentSection) && isPlanetsCollection(contentSection?.results)) {
+    if (isGenericResponseData(contentSection) && isGenericCollection(contentSection.results)) {
       const { results } = contentSection
-      let updatedResults = [...results]
+      const updatedResults = [...results]
       if (searchParams.get('filter') === 'true' && isFilterType(activeSection)) {
         const filteredResults = filterContentByStrategy(updatedResults, activeSection)
-        if (isPlanetsCollection(filteredResults)) {
-          updatedResults = filteredResults
+        if (filteredResults.length && isPlanetsCollection(filteredResults)) {
+          setPlanets(filteredResults)
+        } else {
+          setPlanets([])
         }
+      } else if (isPlanetsCollection(updatedResults)) {
+        setPlanets(updatedResults)
       }
-      setPlanets(updatedResults)
     }
   }, [contentSection, searchParams])
 
@@ -52,24 +89,18 @@ const Planets: FC = () => {
         setActiveFilter={setActiveFilter}
       />
       <h2>{activeSection}</h2>
+
       <section className='grid'>
-        {planets?.map(
-          ({ name, diameter, gravity, population, surface_water, terrain, orbital_period }) => {
-            const key = name.toLowerCase()
-            return (
-              <article key={key}>
-                <h3>{name}</h3>
-                <ul>
-                  <li>diameter: {diameter}</li>
-                  <li>gravity: {gravity}</li>
-                  <li>population: {population}</li>
-                  <li>surface water: {surface_water}</li>
-                  <li>terrain: {terrain}</li>
-                  <li>orbital period: {orbital_period}</li>
-                </ul>
-              </article>
-            )
-          }
+        {planets?.map((planet) => (
+          <div key={planet.name.toLowerCase()}>
+            <PlanetPreview planet={planet} />
+          </div>
+        ))}
+        {!planets?.length && activeFilter && (
+          <p>
+            Scanner results: no <strong>{activeSection}</strong> found for{' '}
+            {getCommissionerNameBySection(activeSection, true)} strategy
+          </p>
         )}
       </section>
       {isGenericResponseData(contentSection) && contentSection?.count > 10 && (
