@@ -2,10 +2,11 @@ import React, { FC } from 'react'
 
 const Unauthorized: FC = () => {
   return (
-    <div>
-      <p className='unauthorized'>
+    <div className='unauthorized'>
+      <h2>[ ! ] Unauthorized</h2>
+      <p>
         On behalf of the Admiral and the Princess, any attempt to use this system from terminals
-        with resolution less than 1024 are prohibited and punished by banishment.
+        with resolution less than 1024 is prohibited and punished by banishment.
       </p>
     </div>
   )
