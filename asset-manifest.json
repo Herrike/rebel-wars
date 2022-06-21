@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/rebel-wars/static/css/main.109e2cd2.css",
-    "main.js": "/rebel-wars/static/js/main.b017dee8.js",
-    "static/js/0.31e8d6f2.chunk.js": "/rebel-wars/static/js/0.31e8d6f2.chunk.js",
-    "static/js/877.b02cb40c.chunk.js": "/rebel-wars/static/js/877.b02cb40c.chunk.js",
+    "main.css": "/rebel-wars/static/css/main.5f81a111.css",
+    "main.js": "/rebel-wars/static/js/main.f64c546f.js",
+    "static/js/0.39b3f78c.chunk.js": "/rebel-wars/static/js/0.39b3f78c.chunk.js",
+    "static/js/358.ebf3efa1.chunk.js": "/rebel-wars/static/js/358.ebf3efa1.chunk.js",
     "static/js/787.28cb0dcd.chunk.js": "/rebel-wars/static/js/787.28cb0dcd.chunk.js",
     "index.html": "/rebel-wars/index.html",
-    "main.109e2cd2.css.map": "/rebel-wars/static/css/main.109e2cd2.css.map",
-    "main.b017dee8.js.map": "/rebel-wars/static/js/main.b017dee8.js.map",
-    "0.31e8d6f2.chunk.js.map": "/rebel-wars/static/js/0.31e8d6f2.chunk.js.map",
-    "877.b02cb40c.chunk.js.map": "/rebel-wars/static/js/877.b02cb40c.chunk.js.map",
+    "main.5f81a111.css.map": "/rebel-wars/static/css/main.5f81a111.css.map",
+    "main.f64c546f.js.map": "/rebel-wars/static/js/main.f64c546f.js.map",
+    "0.39b3f78c.chunk.js.map": "/rebel-wars/static/js/0.39b3f78c.chunk.js.map",
+    "358.ebf3efa1.chunk.js.map": "/rebel-wars/static/js/358.ebf3efa1.chunk.js.map",
     "787.28cb0dcd.chunk.js.map": "/rebel-wars/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.109e2cd2.css",
-    "static/js/main.b017dee8.js"
+    "static/css/main.5f81a111.css",
+    "static/js/main.f64c546f.js"
   ]
 }
