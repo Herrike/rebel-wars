@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { FC, MouseEvent, useContext } from 'react'
+import React, { FC, MouseEvent } from 'react'
 import { SectionType } from '../../contexts/sectionContext.types'
 import { getCommissionerNameBySection } from '../../utils/filters'
 
