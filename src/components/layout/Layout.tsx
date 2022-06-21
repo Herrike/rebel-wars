@@ -11,7 +11,9 @@ const Navigation = React.lazy(() =>
   import('../').then((module) => ({ default: module.Navigation }))
 )
 const Space = React.lazy(() => import('../').then((module) => ({ default: module.Space })))
-const ApiError = React.lazy(() => import('../').then((module) => ({ default: module.ApiError })))
+const RecourceState = React.lazy(() =>
+  import('../').then((module) => ({ default: module.ResourceState }))
+)
 
 const Layout: FC<{ children: ReactNode }> = ({ children }) => {
   const minViewport = 1024
@@ -20,7 +22,7 @@ const Layout: FC<{ children: ReactNode }> = ({ children }) => {
     useContext(SectionContext)
   const [searchParams] = useSearchParams()
   const { width: viewportWidth } = useWindowSize()
-  const { data, error } = useFetch(`api${pathname}${getPageParam(searchParams.get('page'))}`)
+  const { data, error, type } = useFetch(`api${pathname}${getPageParam(searchParams.get('page'))}`)
 
   useEffect(() => {
     const currentPage = searchParams.get('page')
@@ -40,17 +42,17 @@ const Layout: FC<{ children: ReactNode }> = ({ children }) => {
   }, [contentSection, data])
 
   return (
-    <Suspense fallback={<Loading resourceName={activeSection} />}>
-      {error ? (
-        <ApiError error={error} />
-      ) : (
-        <>
-          <Navigation />
-          <Space />
-          {viewportWidth < minViewport ? <Unauthorized minViewport={minViewport} /> : children}
-        </>
-      )}
-    </Suspense>
+    <>
+      <Navigation />
+      <Space />
+      <Suspense>
+        {type === 'error' || type === 'loading' ? (
+          <RecourceState type={type} resourceName={pathname.slice(1)} error={error} />
+        ) : (
+          <>{viewportWidth < minViewport ? <Unauthorized minViewport={minViewport} /> : children}</>
+        )}
+      </Suspense>
+    </>
   )
 }
 

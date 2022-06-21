@@ -10,6 +10,8 @@ const sectionCommissioner = {
     starships: 'Admiral',
 }
 
+const getGenitive = (name: string): string => `${name}'${name.toLowerCase().slice(-1) === 's' ? '' : 's' }`
+
 export const getCommissionerNameBySection = (section: SectionType, withGenitive = false): string => {
     // returns empty string if no section is selected
     if(!section) {
@@ -17,7 +19,7 @@ export const getCommissionerNameBySection = (section: SectionType, withGenitive 
     }
     const name = sectionCommissioner[`${section}`]
     if(withGenitive){
-        return `${name}'${name.toLowerCase().slice(-1) === 's' ? '' : 's' }`
+        return getGenitive(name)
     }
     return name
 }
