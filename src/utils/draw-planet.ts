@@ -3,6 +3,32 @@
 // https://codepen.io/loktar00/pen/AYxMvO (kudos to this dev)
 import { PlanetAttributes, PlanetColor, PlanetComposition, PreparedCanvas } from "./draw-planet.types"
 
+export const drawPlanet = (ctx: CanvasRenderingContext2D, planetAttrs: PlanetAttributes) => {
+    const {color, rad, x: xc, y: yc} = planetAttrs
+
+    ctx.strokeStyle = '#111'
+    ctx.fillStyle = "#000";
+    ctx.beginPath();
+    ctx.arc(xc, yc, rad, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.closePath();
+
+    ctx.fillStyle = "rgb(" + color.r + "," + color.g + "," + color.b + ")";
+
+    for (let y = -rad; y < rad; y++) {
+        const x1 = Math.round(Math.sqrt(rad * rad - y * y));
+        for (let x = -x1; x < x1; x++) {
+            const n = Math.round(Math.random() * x1)/1.5;
+          
+            if (n > x1 + x) {
+                ctx.fillRect(x + xc, y + yc, 1.5, 1.25);
+                ctx.stroke()
+            }
+
+        }
+    }
+}
+
 export const getRGBAColor = (red: number, green: number, blue: number): PlanetColor => ({
     r: red,
     g: green,
@@ -66,31 +92,6 @@ export const prepareCanvas = (canvas: HTMLCanvasElement, planetComposition: Plan
         width,
         height,
         planetAttrs
-    }
-}
-export const drawPlanet = (ctx: CanvasRenderingContext2D, planetAttrs: PlanetAttributes) => {
-    const {color, rad, x: xc, y: yc} = planetAttrs
-
-    ctx.strokeStyle = '#111'
-    ctx.fillStyle = "#000";
-    ctx.beginPath();
-    ctx.arc(xc, yc, rad, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.closePath();
-
-    ctx.fillStyle = "rgb(" + color.r + "," + color.g + "," + color.b + ")";
-
-    for (let y = -rad; y < rad; y++) {
-        const x1 = Math.round(Math.sqrt(rad * rad - y * y));
-        for (let x = -x1; x < x1; x++) {
-            const n = Math.round(Math.random() * x1)/1.5;
-          
-            if (n > x1 + x) {
-                ctx.fillRect(x + xc, y + yc, 1.5, 1.25);
-                ctx.stroke()
-            }
-
-        }
     }
 }
 
