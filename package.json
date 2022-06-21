@@ -1,7 +1,7 @@
 {
   "name": "my-app",
   "version": "0.1.0",
-  "homepage": "https://gitname.github.io/rebel-wars",
+  "homepage": "https://herrike.github.io/rebel-wars",
   "private": false,
   "scripts": {
     "predeploy": "npm run build",
