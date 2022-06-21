@@ -29,7 +29,7 @@
 # here but we recommend using the Netlify UI for sensitive
 # values to keep them out of your source repository. 
 [context.production]
-  publish = "output/"
+  publish = "build/"
   command = "make publish"
   environment = { NODE_VERSION = "16.14.0" }
 
@@ -59,10 +59,102 @@
   to = "/index.html"
   status = 200
 
+# api/planets
 
 [[redirects]]
-  from = "/api/*"
-  to = "https://swapi.dev"
+  from = "/api/planets"
+  to = "https://swapi.dev/planets"
+  status = 200
+
+[[redirects]]
+  from = "/api/planets?page=2"
+  to = "https://swapi.dev/api/planets?page=2"
+  status = 200
+
+[[redirects]]
+  from = "/api/planets?page=3"
+  to = "https://swapi.dev/api/planets?page=3"
+  status = 200
+
+[[redirects]]
+  from = "/api/planets?page=4"
+  to = "https://swapi.dev/api/planets?page=4"
+  status = 200
+
+[[redirects]]
+  from = "/api/planets?page=5"
+  to = "https://swapi.dev/api/planets?page=5"
+  status = 200
+
+[[redirects]]
+  from = "/api/planets?page=6"
+  to = "https://swapi.dev/api/planets?page=6"
+  status = 200
+
+# api/vehicles
+
+[[redirects]]
+  from = "/api/vehicles"
+  to = "https://swapi.dev/vehicles"
+  status = 200
+
+[[redirects]]
+  from = "/api/vehicles?page=2"
+  to = "https://swapi.dev/api/vehicles?page=2"
+  status = 200
+
+[[redirects]]
+  from = "/api/vehicles?page=3"
+  to = "https://swapi.dev/api/vehicles?page=3"
+  status = 200
+
+[[redirects]]
+  from = "/api/vehicles?page=4"
+  to = "https://swapi.dev/api/vehicles?page=4"
+  status = 200
+
+# api/species
+
+[[redirects]]
+  from = "/api/species"
+  to = "https://swapi.dev/species"
+  status = 200
+
+[[redirects]]
+  from = "/api/species?page=2"
+  to = "https://swapi.dev/api/species?page=2"
+  status = 200
+
+[[redirects]]
+  from = "/api/species?page=3"
+  to = "https://swapi.dev/api/species?page=3"
+  status = 200
+
+[[redirects]]
+  from = "/api/species?page=4"
+  to = "https://swapi.dev/api/species?page=4"
+  status = 200
+
+# api/starships
+
+[[redirects]]
+  from = "/api/starships"
+  to = "https://swapi.dev/starships"
+  status = 200
+
+[[redirects]]
+  from = "/api/starships?page=2"
+  to = "https://swapi.dev/api/starships?page=2"
+  status = 200
+
+[[redirects]]
+  from = "/api/starships?page=3"
+  to = "https://swapi.dev/api/starships?page=3"
+  status = 200
+
+[[redirects]]
+  from = "/api/starships?page=4"
+  to = "https://swapi.dev/api/starships?page=4"
   status = 200
 
   
