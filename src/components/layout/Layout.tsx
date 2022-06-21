@@ -14,6 +14,7 @@ const Space = React.lazy(() => import('../').then((module) => ({ default: module
 const ApiError = React.lazy(() => import('../').then((module) => ({ default: module.ApiError })))
 
 const Layout: FC<{ children: ReactNode }> = ({ children }) => {
+  const minViewport = 1024
   const { pathname } = useLocation()
   const { activeSection, contentSection, setActiveSection, setContentSection } =
     useContext(SectionContext)
@@ -46,7 +47,7 @@ const Layout: FC<{ children: ReactNode }> = ({ children }) => {
         <>
           <Navigation />
           <Space />
-          {viewportWidth < 1024 ? <Unauthorized /> : children}
+          {viewportWidth < minViewport ? <Unauthorized minViewport={minViewport} /> : children}
         </>
       )}
     </Suspense>
