@@ -1,6 +1,5 @@
 import React, { FC, ReactNode, Suspense, useContext, useEffect } from 'react'
 import { useLocation, useSearchParams } from 'react-router-dom'
-import { Loading } from '../'
 import { SectionContext } from '../../contexts/sectionContext'
 import { useFetch, useWindowSize } from '../../hooks'
 import { getPageParam } from '../../utils/query'
