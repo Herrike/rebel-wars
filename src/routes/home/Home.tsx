@@ -62,7 +62,7 @@ const Home: FC<HomeProps> = ({ introTimeout = 50000 }) => {
           </div>
         </div>
         <div className='story_body'>
-          <p className='text text--center'>Episode X</p>
+          <p className='text text--center'>Episode XX</p>
           <h2 className='text text--center text--uppercase'>The Alliance&apos;s Reckoning</h2>
           <p>
             The Rebel Alliance is planning an attack on Galactic Empire to restore the Galactic
