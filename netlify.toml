@@ -58,6 +58,7 @@
   from = "/*"
   to = "/index.html"
   status = 200
+  headers = {Access-Control-Allow-Origin = "*"}
 
 # api/planets
 
@@ -65,4 +66,4 @@
   from = "/api/*"
   to = "https://swapi.dev/api/:splat"
   status = 200
-
+  headers = {Access-Control-Allow-Origin = "*"}
