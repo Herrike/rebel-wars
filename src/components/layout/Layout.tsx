@@ -2,7 +2,7 @@ import React, { FC, ReactNode, Suspense, useContext, useEffect } from 'react'
 import { useLocation, useSearchParams } from 'react-router-dom'
 import { SectionContext } from '../../contexts/sectionContext'
 import { useFetch, useWindowSize } from '../../hooks'
-import { getPageParam } from '../../utils/query'
+import { getApiDomain, getApiPath, getPageParam } from '../../utils/query'
 import { isGenericResponseData, isGenericCollection, isValidSection } from '../../utils/typeguards'
 import Unauthorized from '../unauthorized/Unauthorized'
 
@@ -17,11 +17,25 @@ const RecourceState = React.lazy(() =>
 const Layout: FC<{ children: ReactNode }> = ({ children }) => {
   const minViewport = 1024
   const { pathname } = useLocation()
-  const { activeSection, contentSection, setActiveSection, setContentSection } =
-    useContext(SectionContext)
+  const {
+    apiDomain,
+    activeSection,
+    contentSection,
+    setActiveSection,
+    setContentSection,
+    setApiDomain
+  } = useContext(SectionContext)
   const [searchParams] = useSearchParams()
   const { width: viewportWidth } = useWindowSize()
-  const { data, error, type } = useFetch(`api${pathname}${getPageParam(searchParams.get('page'))}`)
+  const { data, error, type } = useFetch(getApiPath(apiDomain, pathname, searchParams))
+
+  useEffect(() => {
+    const apiDomainUrl = getApiDomain()
+    console.log(apiDomainUrl)
+    if (apiDomainUrl !== apiDomain) {
+      setApiDomain(apiDomainUrl)
+    }
+  }, [])
 
   useEffect(() => {
     const currentPage = searchParams.get('page')

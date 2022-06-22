@@ -12,11 +12,19 @@ const Layout = React.lazy(() =>
 const App: FC = () => {
   const [activeSection, setActiveSection] = useState<SectionType>('')
   const [contentSection, setContentSection] = useState<GenericResponseData | null>(null)
+  const [apiDomain, setApiDomain] = useState<string>('')
 
   return (
     <div className='app' data-testid='app'>
       <SectionContext.Provider
-        value={{ activeSection, contentSection, setActiveSection, setContentSection }}
+        value={{
+          apiDomain,
+          activeSection,
+          contentSection,
+          setActiveSection,
+          setContentSection,
+          setApiDomain
+        }}
       >
         <Layout>
           <Outlet />

@@ -1,3 +1,6 @@
+import { URLSearchParamsInit } from "react-router-dom"
+import { getEnvVar } from "./env-vars"
+
 export const wookieeLang = 'wookiee'
 
 export const getGravity = (str: string): number | string => {
@@ -29,3 +32,11 @@ export const getPageParam = (page: string | null): string => {
     }
     return parseInt(page) > 1 ? `?page=${page}` : ''
 }
+
+export const getApiDomain = (): string => {
+    const env = getEnvVar('NODE_ENV')
+    const api = getEnvVar('REACT_APP_SWAPI')
+    return env === 'production' && api ? api : ''
+}
+
+export const getApiPath = (apiDomainUrl: string, pathname: string, searchParams: URLSearchParams) => `${apiDomainUrl}api${pathname}${getPageParam(searchParams.get('page'))}`
