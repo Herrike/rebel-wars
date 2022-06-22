@@ -38,4 +38,4 @@ export const getApiDomain = (): string => {
     return env === 'production' && api ? api : ''
 }
 
-export const getApiPath = (apiDomainUrl: string, pathname: string, searchParams: URLSearchParams) => `${apiDomainUrl}/api${pathname}${getPageParam(searchParams.get('page'))}`
+export const getApiPath = (apiDomainUrl: string, pathname: string, searchParams: URLSearchParams) => pathname === '' ? pathname : `${apiDomainUrl}/api${pathname}${getPageParam(searchParams.get('page'))}`
