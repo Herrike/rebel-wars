@@ -31,7 +31,6 @@ const Layout: FC<{ children: ReactNode }> = ({ children }) => {
 
   useEffect(() => {
     const apiDomainUrl = getApiDomain()
-    console.log(apiDomainUrl)
     if (apiDomainUrl !== apiDomain) {
       setApiDomain(apiDomainUrl)
     }
