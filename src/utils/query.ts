@@ -39,5 +39,5 @@ export const getApiDomain = (): string => {
 }
 
 export const getApiPath = (apiDomainUrl: string, pathname: string, searchParams: URLSearchParams) => {
-    console.log(pathname)
-    pathname === '/' ? '' : `${apiDomainUrl}/api${pathname}${getPageParam(searchParams.get('page'))}`}
+    return pathname === '/' ? '' : `${apiDomainUrl}/api${pathname}${getPageParam(searchParams.get('page'))}`
+}
