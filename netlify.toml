@@ -54,16 +54,17 @@
 
 # The following redirect is intended for use with most SPAs 
 # that handle routing internally.
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  headers = {Access-Control-Allow-Origin = "*"}
 
-# api/planets
+# proxy api
 
 [[redirects]]
   from = "/api/*"
   to = "https://swapi.dev/api/:splat"
+  status = 200
+  headers = {Access-Control-Allow-Origin = "*"}
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
   status = 200
   headers = {Access-Control-Allow-Origin = "*"}
