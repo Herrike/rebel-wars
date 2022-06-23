@@ -2,7 +2,7 @@ import React, { FC, ReactNode, Suspense, useContext, useEffect } from 'react'
 import { useLocation, useSearchParams } from 'react-router-dom'
 import { SectionContext } from '../../contexts/sectionContext'
 import { useFetch, useWindowSize } from '../../hooks'
-import { getApiDomain, getApiPath, getPageParam } from '../../utils/query'
+import { getApiDomain, getApiPath } from '../../utils/query'
 import { isGenericResponseData, isGenericCollection, isValidSection } from '../../utils/typeguards'
 import Unauthorized from '../unauthorized/Unauthorized'
 
